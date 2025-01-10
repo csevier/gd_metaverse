@@ -38,6 +38,11 @@ _global_script_classes=[ {
 "class": "Link",
 "language": "GDScript",
 "path": "res://link.gd"
+}, {
+"base": "HttpFileRouter",
+"class": "LinkRouter",
+"language": "GDScript",
+"path": "res://link_router.gd"
 } ]
 _global_script_class_icons={
 "HttpFileRouter": "",
@@ -45,7 +50,8 @@ _global_script_class_icons={
 "HttpResponse": "",
 "HttpRouter": "",
 "HttpServer": "",
-"Link": "res://link.svg"
+"Link": "res://link.svg",
+"LinkRouter": ""
 }
 
 [application]
@@ -53,6 +59,10 @@ _global_script_class_icons={
 config/name="gd_metaverse"
 run/main_scene="res://World.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+LinkServer="*res://link_server.gd"
 
 [gui]
 

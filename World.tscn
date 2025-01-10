@@ -25,7 +25,8 @@ script = ExtResource( 5 )
 
 [node name="Link" type="Node" parent="."]
 script = ExtResource( 2 )
-pck = "test3.pck"
+link_location = "http://127.0.0.1:8080/"
+pck = "world2.pck"
 main_scene = "res://World2.tscn"
 
 [node name="Area" type="Area" parent="."]

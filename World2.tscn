@@ -46,7 +46,8 @@ current = true
 
 [node name="Link" type="Node" parent="."]
 script = ExtResource( 1 )
-pck = "test4.pck"
+link_location = "http://127.0.0.1:8080/"
+pck = "world3.pck"
 main_scene = "res://World3.tscn"
 
 [node name="Area" type="Area" parent="."]
