@@ -1,14 +1,61 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://World.tscn" type="PackedScene" id=1]
+[ext_resource path="res://link.gd" type="Script" id=1]
+[ext_resource path="res://World.gd" type="Script" id=2]
+[ext_resource path="res://scroll.gd" type="Script" id=3]
+[ext_resource path="res://Player.gd" type="Script" id=4]
+[ext_resource path="res://WorldMat2.tres" type="Material" id=5]
 
-[sub_resource type="PrismMesh" id=1]
+[sub_resource type="PlaneMesh" id=1]
+material = ExtResource( 5 )
+size = Vector2( 10, 10 )
 
-[node name="World" instance=ExtResource( 1 )]
+[sub_resource type="CapsuleShape" id=4]
+radius = 0.33
+height = 0.935727
 
-[node name="Cube" parent="." index="2"]
+[sub_resource type="CapsuleMesh" id=2]
+radius = 0.33
+
+[sub_resource type="BoxShape" id=5]
+
+[sub_resource type="CubeMesh" id=6]
+
+[node name="World" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="Plane" type="MeshInstance" parent="."]
 mesh = SubResource( 1 )
+script = ExtResource( 3 )
 
-[node name="Link" parent="." index="3"]
+[node name="Player" type="KinematicBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.40493, 0.8, 0 )
+script = ExtResource( 4 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Player"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Player"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+mesh = SubResource( 2 )
+
+[node name="Camera" type="Camera" parent="Player"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.528404, 0 )
+current = true
+
+[node name="Link" type="Node" parent="."]
+script = ExtResource( 1 )
 pck = "test4.pck"
-main_scene = "res://World.tscn"
+main_scene = "res://World3.tscn"
+
+[node name="Area" type="Area" parent="."]
+transform = Transform( 0.257893, 0, 0, 0, 1.23291, 0, 0, 0, 1.23291, -3.94821, 1.21949, -3.53691 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+shape = SubResource( 5 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Area"]
+mesh = SubResource( 6 )
+
+[connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
