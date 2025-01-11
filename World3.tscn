@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://train.glb" type="PackedScene" id=1]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://link.gd" type="Script" id=3]
+[ext_resource path="res://World.gd" type="Script" id=4]
+
+[sub_resource type="BoxShape" id=1]
+
+[sub_resource type="CubeMesh" id=2]
+
+[node name="World3" instance=ExtResource( 1 )]
+script = ExtResource( 4 )
+
+[node name="Player" parent="." index="19" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2, 5 )
+
+[node name="Link" type="Node" parent="." index="20"]
+script = ExtResource( 3 )
+link_location = "http://127.0.0.1:8080/"
+pck = "world1.pck"
+
+[node name="Area" type="Area" parent="." index="21"]
+transform = Transform( 0.000211129, 0, -2.51423, 0, 3.28432, 0, 0.257893, 0, 0.000494956, 4.60434, 2.44053, 13.7323 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Area" index="0"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Area" index="1"]
+mesh = SubResource( 2 )
+
+[connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
