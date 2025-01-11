@@ -26,4 +26,4 @@ var query: Dictionary
 
 # Override `str()` method, automatically called in `print()` function
 func _to_string() -> String:
-    return JSON.print({headers=headers, method=method, path=path})
+	return JSON.print({headers=headers, method=method, path=path})
